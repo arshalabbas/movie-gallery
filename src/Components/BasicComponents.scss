@@ -1,0 +1,16 @@
+@import "variables.scss";
+
+.devider {
+  margin: 2rem 0;
+  width: 100%;
+  border-top: 1px solid $secondary;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+}
