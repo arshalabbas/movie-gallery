@@ -6,6 +6,7 @@ import config from "../../config.json";
 import "./Download.scss";
 
 import queryString from "query-string";
+import { Link } from "react-router-dom";
 
 export default function Download() {
   const [movieDetails, setMovieDetails] = useState({});
@@ -73,9 +74,11 @@ export default function Download() {
     setMovieDetails(moviesList.find((movie) => movie.id === id));
   }, []);
 
-  document.title = `Download - ${movieDetails.title}`;
+  document.title = `Download - ${
+    movieDetails ? movieDetails.title : "Movie Unavailable"
+  }`;
 
-  return (
+  return movieDetails ? (
     <div className="page">
       <div className="banner py-5">
         <Container>
@@ -103,19 +106,38 @@ export default function Download() {
       <div className="downloads-section">
         <Container>
           <Heading title="Downloads" className="text-center" />
-          {/* {movieDetails.urls.map((movie) => (
-            <div>
-              <h1>{movie.title}</h1>{" "}
-              <a
-                target="_blank"
-                href={`${config.downloadBaseURL}/${movie.urlID}`}
+          <div className="downloads-list mx-md-5">
+            {movieDetails.urls?.map((URL, index) => (
+              <div
+                key={index}
+                className="item text-light d-flex align-items-center justify-content-between my-3 py-3"
               >
-                <Button>Download</Button>
-              </a>
-            </div>
-          ))} */}
+                <p className="align-self-center">
+                  {URL.title} <span className="text-primary">{URL.size}</span>
+                </p>
+                <Button
+                  className="align-self-center"
+                  href={config.downloadBaseURL + URL.urlID}
+                >
+                  <i className="bi bi-download"></i>{" "}
+                  <span className="d-none d-md-inline">Download</span>
+                </Button>
+              </div>
+            ))}
+          </div>
         </Container>
       </div>
+    </div>
+  ) : (
+    <div className="page d-flex flex-column justify-content-center align-items-center">
+      <h1 className="text-center text-secondary my-3">
+        This movie is deleted or unavailable...
+      </h1>
+      <Link to="/">
+        <Button>
+          <i className="bi bi-house-fill"></i> Go Home
+        </Button>
+      </Link>
     </div>
   );
 }

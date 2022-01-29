@@ -5,7 +5,7 @@ import "./Card.scss";
 
 export default function Card({ loaded, id, title, lang, img, category, year }) {
   return loaded ? (
-    <Link to={`/download?id=${id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/download?id=${id}`} className="text-decoration-none">
       <div className="custom-card my-md-2">
         <img src={img} alt="banner" />
         <div className="gradient"></div>

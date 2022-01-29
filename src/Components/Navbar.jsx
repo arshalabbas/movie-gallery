@@ -9,6 +9,8 @@ import {
   Col,
 } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 import "./Navbar.scss";
 
 export default function Navbarr({ brandName }) {
@@ -17,9 +19,11 @@ export default function Navbarr({ brandName }) {
       <Container>
         <Row className="w-100 justify-content-between align-items-center">
           <Col md="auto">
-            <Navbar.Brand href="#" className="text-primary mx-2 fs-4">
-              {brandName}
-            </Navbar.Brand>
+            <Link to="/" className="text-decoration-none">
+              <Navbar.Brand className="text-primary mx-2 fs-4">
+                {brandName}
+              </Navbar.Brand>
+            </Link>
           </Col>
           <Col md="auto">
             <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>

@@ -10,6 +10,12 @@
   }
 }
 
+.downloads-list {
+  .item {
+    border-bottom: 1px solid $secondary;
+  }
+}
+
 @media (max-width: 768px) {
   .banner {
     text-align: center;

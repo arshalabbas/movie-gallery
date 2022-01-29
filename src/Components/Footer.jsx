@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { Heading } from "./BasicComponents";
 
@@ -9,11 +10,13 @@ function Footer({ brandName }) {
       <Container>
         <Row className="d-flex justify-content-between align-items-center">
           <Col md="auto">
-            <Heading
-              title={brandName}
-              color="primary"
-              className="fs-3 link-primary cursor-pointer"
-            />
+            <Link to="/" className="text-decoration-none">
+              <Heading
+                title={brandName}
+                color="primary"
+                className="fs-3 link-primary cursor-pointer"
+              />
+            </Link>
           </Col>
           <Col md="auto">
             <p className="text-light mb-0">
