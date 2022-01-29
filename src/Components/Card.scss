@@ -9,6 +9,7 @@
   border-radius: 8px;
   transition: 0.15s ease-in-out;
   cursor: pointer;
+  min-height: 280px;
   max-height: 300px;
 
   &:hover {
@@ -44,11 +45,12 @@
   bottom: 5%;
 }
 
-@media (max-width: 772px) {
+@media (max-width: 768px) {
   .custom-card {
     display: flex;
     position: static;
     max-width: 100%;
+    min-height: 6rem;
     margin: 1rem 0;
 
     img {

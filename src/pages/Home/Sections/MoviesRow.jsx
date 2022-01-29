@@ -9,8 +9,8 @@ function MoviesRow({ title, movieList, loaded, last, seeMoreHandler }) {
     <Container>
       <Heading title={title} />
       <Row>
-        {movieList.map((movie) => (
-          <Col sm={12} md={6} lg={3}>
+        {movieList.map((movie, index) => (
+          <Col key={index} sm={12} md={6} lg={3}>
             <Card
               loaded={loaded}
               title={movie.title}

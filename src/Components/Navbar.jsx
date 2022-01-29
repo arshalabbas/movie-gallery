@@ -11,14 +11,14 @@ import {
 
 import "./Navbar.scss";
 
-export default function Navbarr() {
+export default function Navbarr({ brandName }) {
   return (
     <Navbar bg="dark" varient="dark" className="py-3" fixed="top">
       <Container>
         <Row className="w-100 justify-content-between align-items-center">
           <Col md="auto">
             <Navbar.Brand href="#" className="text-primary mx-2 fs-4">
-              MovieGallery
+              {brandName}
             </Navbar.Brand>
           </Col>
           <Col md="auto">

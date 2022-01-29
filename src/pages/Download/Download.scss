@@ -1,0 +1,22 @@
+@import "variables.scss";
+
+.banner {
+  background: linear-gradient(90deg, transparent, #000);
+
+  img {
+    width: auto;
+    border-radius: 8px;
+    box-shadow: $light 0px 0px 15px -8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    text-align: center;
+    background: linear-gradient(transparent, #000);
+
+    img {
+      margin-bottom: 2rem;
+    }
+  }
+}

@@ -3,14 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { Heading } from "./BasicComponents";
 
-function Footer() {
+function Footer({ brandName }) {
   return (
     <div className="bg-black py-4">
       <Container>
         <Row className="d-flex justify-content-between align-items-center">
           <Col md="auto">
             <Heading
-              title="MovieGallery"
+              title={brandName}
               color="primary"
               className="fs-3 link-primary cursor-pointer"
             />
@@ -18,7 +18,7 @@ function Footer() {
           <Col md="auto">
             <p className="text-light mb-0">
               Copyright &copy; 2022{" "}
-              <span className="text-primary">MovieGallery</span>. All Rights
+              <span className="text-primary">{brandName}</span>. All Rights
               Reserved
             </p>
           </Col>

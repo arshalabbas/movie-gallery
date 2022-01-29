@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import MoviesRow from "./Sections/MoviesRow";
 import ChipsRow from "./Sections/ChipsRow";
 
-export default function Home() {
+export default function Home({ title }) {
+  document.title = title;
+
   const [newReleased, setNewReleased] = useState([1, 1, 1, 1]);
   const [categoryChips, setCategoryChips] = useState([]);
   const [loaded, setLoaded] = useState(false);
