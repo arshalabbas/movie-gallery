@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -14,6 +14,10 @@ import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 export default function Navbarr({ brandName }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const onChangeHandler = (event) => setSearchQuery(event.target.value);
+
   return (
     <Navbar bg="dark" varient="dark" className="py-3" fixed="top">
       <Container>
@@ -32,10 +36,14 @@ export default function Navbarr({ brandName }) {
                 aria-label="search"
                 className="search-field mx-2 bg-secondary border-0 text-light"
                 placeholder="Search the movies..."
+                onChange={onChangeHandler}
+                value={searchQuery}
               />
-              <Button className="text-light" varient="primary">
-                <i className="bi bi-search"></i>
-              </Button>
+              <a href={`/search/?query=${searchQuery}`}>
+                <Button className="text-light" varient="primary">
+                  <i className="bi bi-search"></i>
+                </Button>
+              </a>
             </Form>
           </Col>
         </Row>

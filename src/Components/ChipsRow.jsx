@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import { Heading, Devider } from "../../../Components/BasicComponents";
+import { Heading, Devider } from "./BasicComponents";
 
 function ChipsRow({ title, chipLists, last }) {
   return (

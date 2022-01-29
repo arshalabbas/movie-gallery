@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import MoviesRow from "./Sections/MoviesRow";
-import ChipsRow from "./Sections/ChipsRow";
+import MoviesRow from "../../Components/MoviesRow";
+import ChipsRow from "../../Components/MoviesRow";
 
 export default function Home({ title }) {
   document.title = title;
