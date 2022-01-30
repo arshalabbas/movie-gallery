@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import MoviesRow from "../../Components/MoviesRow";
-import ChipsRow from "../../Components/MoviesRow";
+import ChipsRow from "../../Components/ChipsRow";
 
 export default function Home({ title }) {
   document.title = title;
 
   const [newReleased, setNewReleased] = useState([1, 1, 1, 1]);
-  const [categoryChips, setCategoryChips] = useState([]);
+  const [byLanguage, setByLanguage] = useState([1, 1, 1, 1]);
+  const [languagesChips, setLanguagesChips] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -47,15 +48,19 @@ export default function Home({ title }) {
     ];
 
     const chipsList = [
-      { id: "0000", name: "Sci-Fi" },
-      { id: "0001", name: "Adventure" },
-      { id: "0010", name: "Fantasy" },
-      { id: "0100", name: "Drama" },
+      { name: "English", value: "1" },
+      { name: "Malayalam", value: "2" },
+      { name: "Tamil", value: "3" },
+      { name: "Hindi", value: "4" },
+      { name: "Telugu", value: "5" },
     ];
 
     setTimeout(() => {
       setNewReleased(moviesList);
-      setCategoryChips(chipsList);
+      setLanguagesChips(chipsList);
+      setByLanguage(
+        moviesList.filter((movie) => movie.lang === chipsList[0].name)
+      );
       setLoaded(true);
     }, 3000);
   }, []);
@@ -101,25 +106,59 @@ export default function Home({ title }) {
     });
   };
 
+  const onChipChangeHandler = (e) => {
+    const moviesList = [
+      {
+        id: "122631",
+        title: "Spider-Man No Way HosetCategoryChipsme",
+        year: 2021,
+        category: "Action/Adventure",
+        lang: "English",
+        img: "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
+      },
+      {
+        id: "0010",
+        title: "Minnal Murali",
+        year: 2021,
+        category: "Action/Adventure",
+        lang: "Malayalam",
+        img: "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Minnal_Murali.jpg/220px-Minnal_Murali.jpg",
+      },
+      {
+        id: "0100",
+        title: "Churuli",
+        year: 2021,
+        category: "Mystery/Sci-Fi",
+        lang: "Malayalam",
+        img: "https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Churuli.jpeg/220px-Churuli.jpeg",
+      },
+      {
+        id: "1000",
+        title: "Pushpa: The Rise",
+        year: 2021,
+        category: "Action/Drama",
+        lang: "Telugu",
+        img: "https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Pushpa_-_The_Rise_%282021_film%29.jpg/220px-Pushpa_-_The_Rise_%282021_film%29.jpg",
+      },
+    ];
+
+    setByLanguage(moviesList.filter((movie) => movie.lang == e.name));
+  };
+
   return (
     <div className="page">
       <MoviesRow
         title="Recently Uploaded"
-        movieList={newReleased}
+        moviesList={newReleased}
         loaded={loaded}
         seeMoreHandler={seeMoreHandler}
       />
       <ChipsRow
-        title="Search by category"
-        chipLists={categoryChips}
+        title="Search by Languages"
+        chipsList={languagesChips}
         loaded={loaded}
-      />
-      <MoviesRow
-        title="Most Downloaded"
-        movieList={newReleased}
-        loaded={loaded}
-        seeMoreHandler={seeMoreHandler}
-        last
+        moviesList={byLanguage}
+        onChange={onChipChangeHandler}
       />
     </div>
   );

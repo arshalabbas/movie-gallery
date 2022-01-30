@@ -1,32 +1,70 @@
-import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  ToggleButton,
+  ButtonGroup,
+} from "react-bootstrap";
 
-import { Heading, Devider } from "./BasicComponents";
+import { Heading } from "./BasicComponents";
+import MoviesRow from "./MoviesRow";
 
-function ChipsRow({ title, chipLists, last }) {
+function ChipsRow({ title, chipsList, onChange, moviesList, loaded }) {
+  const [currentChip, setCurrentChip] = useState("1");
+  const onChipChangeHandler = (e) => {
+    setCurrentChip(e.currentTarget.value);
+    if (onChange !== undefined)
+      onChange(chipsList[parseInt(e.currentTarget.value) - 1]);
+  };
+
   return (
-    <Container>
-      <Heading title={title} />
-      <Row className="text-center">
-        <Col className="w-80">
-          {chipLists.map((chip) => (
-            <Button
-              className="m-3 px-3 rounded-pill"
-              variant="primary"
-              key={chip.id}
-            >
-              {chip.name}
-            </Button>
-          ))}
-        </Col>
-      </Row>
-      <Heading
-        title="See more..."
-        color="link-primary"
-        className="text-center link link-primary fs-5"
-      />
-      {!last ? <Devider /> : null}
-    </Container>
+    <>
+      <Container>
+        <Heading title={title} />
+        <Row className="text-center">
+          <Col>
+            {chipsList?.map((chip, index) => (
+              <ToggleButton
+                key={index}
+                id={`radio-${index}`}
+                type="radio"
+                variant="primary"
+                name="radio"
+                value={chip.value}
+                checked={currentChip === chip.value}
+                onChange={onChipChangeHandler}
+                className="m-2 px-3 rounded-pill"
+              >
+                {chip.name}
+              </ToggleButton>
+            ))}
+          </Col>
+        </Row>
+      </Container>
+      {loaded ? (
+        moviesList.length ? (
+          <MoviesRow
+            title={`${chipsList[currentChip - 1].name} Movies`}
+            moviesList={moviesList}
+            loaded={loaded}
+            last
+          />
+        ) : (
+          <Heading
+            title="No movies found :,)"
+            color="text-secondary"
+            className="text-center"
+          />
+        )
+      ) : (
+        <Heading
+          title="Loading..."
+          color="text-secondary"
+          className="text-center text-secondary"
+        />
+      )}
+    </>
   );
 }
 

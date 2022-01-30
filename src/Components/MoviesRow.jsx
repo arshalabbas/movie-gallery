@@ -4,12 +4,12 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Heading, Devider } from "./BasicComponents";
 import Card from "./Card";
 
-function MoviesRow({ title, movieList, loaded, last, seeMoreHandler, over }) {
+function MoviesRow({ title, moviesList, loaded, last, seeMoreHandler, over }) {
   return (
     <Container>
       <Heading title={title} />
       <Row>
-        {movieList?.map((movie, index) => (
+        {moviesList?.map((movie, index) => (
           <Col key={index} sm={12} md={6} lg={3}>
             <Card
               loaded={loaded}
