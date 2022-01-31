@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Button,
   Container,
@@ -15,8 +15,15 @@ import "./Navbar.scss";
 
 export default function Navbarr({ brandName }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const searchButton = useRef();
 
-  const onChangeHandler = (event) => setSearchQuery(event.target.value.trim());
+  const onChangeHandler = (event) => setSearchQuery(event.target.value);
+  const onKeyPressHandler = (event) => {
+    if (event.key === "Enter") {
+      if (!searchQuery) return;
+      searchButton.current.click();
+    }
+  };
 
   return (
     <Navbar bg="dark" varient="dark" className="py-3" fixed="top">
@@ -37,11 +44,14 @@ export default function Navbarr({ brandName }) {
                 className="search-field mx-2 bg-secondary border-0 text-light"
                 placeholder="Search the movies..."
                 onChange={onChangeHandler}
+                value={searchQuery}
+                onKeyPress={onKeyPressHandler}
               />
               <Button
                 className="text-light"
                 varient="primary"
-                href={`/search/?query=${searchQuery}`}
+                href={`/search/?query=${searchQuery.trim()}`}
+                ref={searchButton}
                 disabled={searchQuery ? false : true}
               >
                 <i className="bi bi-search"></i>

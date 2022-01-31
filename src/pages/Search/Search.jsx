@@ -43,7 +43,7 @@ function Search() {
     <div className="page">
       <Container>
         <MoviesRow
-          movieList={searchResults}
+          moviesList={searchResults}
           title={`Search Result for "${searchQuery ? searchQuery : " "}"`}
           loaded
           over
